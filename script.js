@@ -21,9 +21,13 @@ const links = document.getElementById('navLinks');
 toggle.addEventListener('click', () => links.classList.toggle('open'));
 links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
 
-// Reveal on scroll
+// Reveal on scroll (repetible: se anima cada vez que entra/sale de pantalla,
+// al bajar y al subir, sin importar cuántas veces pases por ahí)
 const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
+    else { e.target.classList.remove('visible'); }
+  });
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
