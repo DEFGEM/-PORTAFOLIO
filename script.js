@@ -64,3 +64,21 @@ document.getElementById('copyEmail').addEventListener('click', async (e) => {
     setTimeout(() => e.currentTarget.innerHTML = '<i class="fa-solid fa-copy"></i> Copiar email', 2000);
   } catch { alert('Email: cristophermp3g@gmail.com'); }
 });
+
+// Modal certificado
+const modal = document.getElementById('certModal');
+const frame = document.getElementById('certFrame');
+const back = document.getElementById('certBack');
+const closeBtn = document.getElementById('certClose');
+document.querySelectorAll('[data-cert]').forEach(el => {
+  el.addEventListener('click', e => {
+    e.preventDefault();
+    frame.src = el.getAttribute('href');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+});
+function cerrarModal() { modal.classList.remove('active'); document.body.style.overflow = ''; frame.src = ''; }
+closeBtn.addEventListener('click', cerrarModal);
+back.addEventListener('click', cerrarModal);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarModal(); });
