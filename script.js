@@ -81,10 +81,10 @@ const certFiles = {
 document.querySelectorAll('.cert-wrap').forEach(wrap => {
   const cert = wrap.dataset.cert;
   const link = wrap.querySelector('a');
-  // Hover popover: crear miniatura
+  // Hover popover: crear vista previa del PDF
   const pop = document.createElement('div');
   pop.className = 'cert-pop';
-  pop.innerHTML = `<strong>${certFiles[cert] || cert}</strong><span>Haz clic para ver</span><span class="pop-cita">📄 ${cert}</span>`;
+  pop.innerHTML = `<iframe src="C/${cert}" title="${certFiles[cert]}"></iframe><strong>${certFiles[cert] || cert}</strong><span class="pop-cita">📄 ${cert}</span>`;
   wrap.appendChild(pop);
   // Click abre modal completo
   link.addEventListener('click', e => {
