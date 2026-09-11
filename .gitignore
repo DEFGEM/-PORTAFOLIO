@@ -1,0 +1,7 @@
+assets/foto.png
+assets/README.txt
+node_modules
+*.log
+.env
+.DS_Store
+Thumbs.db
