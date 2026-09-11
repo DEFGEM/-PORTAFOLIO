@@ -70,10 +70,26 @@ const modal = document.getElementById('certModal');
 const frame = document.getElementById('certFrame');
 const back = document.getElementById('certBack');
 const closeBtn = document.getElementById('certClose');
-document.querySelectorAll('[data-cert]').forEach(el => {
-  el.addEventListener('click', e => {
+const certFiles = {
+  'cert-cybersecurity.pdf': 'Introducción a Ciberseguridad',
+  'cert-ia.pdf': 'Introducción a la IA Moderna',
+  'cert-iot.pdf': 'IoT y Transformación Digital',
+  'cert-computo.pdf': 'Uso de Computadoras y Móviles',
+  'cert-javascript.pdf': 'JavaScript Essentials 2',
+  'cert-tecnm.pdf': 'Certificado TecNM CPFCDE'
+};
+document.querySelectorAll('.cert-wrap').forEach(wrap => {
+  const cert = wrap.dataset.cert;
+  const link = wrap.querySelector('a');
+  // Hover popover: crear miniatura
+  const pop = document.createElement('div');
+  pop.className = 'cert-pop';
+  pop.innerHTML = `<strong>${certFiles[cert] || cert}</strong><span>Haz clic para ver</span><span class="pop-cita">📄 ${cert}</span>`;
+  wrap.appendChild(pop);
+  // Click abre modal completo
+  link.addEventListener('click', e => {
     e.preventDefault();
-    frame.src = el.getAttribute('href');
+    frame.src = 'C/' + cert;
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
   });
